@@ -40,7 +40,8 @@
           </div>
           <div class="row comment-row d-flex flex-column" v-for="comment in comments">
             <p>{{comment.body}}}</p>
-            <p><span># of replies: {{replies.length}}</span> by username</p>
+            <p>
+              <span># of replies: {{replies.length}}</span> by username</p>
           </div>
           <div class="row reply-row d-flex flex-column">
             <p>Body of the reply</p>
@@ -76,8 +77,35 @@
       getComments(post) {
         this.$store.dispatch('getComments', post);
       },
-      getReplies (comment) {
+      getReplies(comment) {
         this.$store.dispatch('getReplies', comment);
+      },
+      addPost(post) {
+        this.$store.dipsatch('addPost', post);
+      },
+      addComments(comment) {
+        this.$store.dipsatch('addComment', comment);
+      },
+      addReply(reply) {
+        this.$store.dipsatch('addReply', reply);
+      },
+      removePost(post) {
+        this.$store.dipsatch('removePost', post)
+      },
+      removeComment(comment) {
+        this.$store.dipsatch('removeComment', comment)
+      },
+      removeReply(reply) {
+        this.$store.dipsatch('removeReply', reply)
+      },
+      updatePost(post) {
+        this.$store.dipatch('updatePost', post)
+      },
+      updateComment(comment) {
+        this.$store.dipatch('updateComment', comment)
+      },
+      updateReply(reply) {
+        this.$store.dipatch('updateReply', reply)
       }
       // ADD METHODS FOR EACH ACTION YOU WRITE
     },
