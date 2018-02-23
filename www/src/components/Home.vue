@@ -2,7 +2,8 @@
   <div class="Home">
     <div class="container-fluid">
       <div class="row">
-        <!-- onclick, show this form row-->
+        <!-- onclick, show this form row later-->
+        <!-- tie in this form data in the postPost() function in index.js that you write-->
         <div class="form-group">
           <form @submit.prevent="">
             <input type="text" placeholder="Post Title"></input>
@@ -15,14 +16,13 @@
       </div>
       <div class="row">
         <div class="col-sm-10">
-          <!-- error is here somewhere -->
           <div class="row post-row" v-for="post in posts">
             <div class="col-sm-6">
               <h1>{{post.title}}</h1>
               <p>{{post.body}}}</p>
               <!--make this clickable later-->
               <p>
-                <span># of comments</span>
+                <span># of comments: {{comments.length}}</span>
                 <span>{{post.userId}}}</span>
               </p>
             </div>
@@ -38,15 +38,13 @@
               </form>
             </div>
           </div>
-          <div class="row comment-row d-flex flex-column">
-            <h6>Body of the comment</h6>
-            <p>
-              <span># of </span>
-              <span>replies</span> by username</p>
+          <div class="row comment-row d-flex flex-column" v-for="comment in comments">
+            <p>{{comment.body}}}</p>
+            <p><span># of replies: {{replies.length}}</span> by username</p>
           </div>
           <div class="row reply-row d-flex flex-column">
             <p>Body of the reply</p>
-            <!-- still need to incorporate show/hide on reply rows -->
+            <!-- still need to incorporate show/hide on reply rows LATER-->
             <p>by username</p>
           </div>
         </div>
@@ -72,11 +70,29 @@
       }
     },
     methods: {
-
+      getPosts() {
+        this.$store.dipsatch('getPosts');
+      },
+      getComments(post) {
+        this.$store.dispatch('getComments', post);
+      },
+      getReplies (comment) {
+        this.$store.dispatch('getReplies', comment);
+      }
+      // ADD METHODS FOR EACH ACTION YOU WRITE
     },
     computed: {
       posts() {
-        return this.$store.state.posts
+        return this.$store.state.posts;
+      },
+      comments() {
+        return this.$store.state.comments;
+      },
+      user() {
+        return this.$store.state.user;
+      },
+      replies() {
+        return this.$store.state.replies;
       }
     }
   }
