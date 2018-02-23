@@ -6,15 +6,16 @@ require('./server-assets/db/mlab-config');
 var port = 3000;
 var userRoutes = require('./server-assets/routes/users');
 var postsRoutes = require('./server-assets/routes/posts');
-// var repliesRoutes = require('./server-assets/routes/replies');
-// var commentsRoutes = require('.server-assets/routes/users')
+var repliesRoutes = require('./server-assets/routes/replies'); 
+var commentsRoutes = require('./server-assets/routes/comments');
 
 server.use(cors());
 server.use(bp.json());
 server.use(bp.urlencoded({extended: true}));
 server.use(userRoutes.router);
 server.use(postsRoutes.router);
-// server.use(commentRoutes.router);
+server.use(repliesRoutes.router);
+server.use(commentsRoutes.router);
 
 
 
