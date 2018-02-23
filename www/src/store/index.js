@@ -32,9 +32,6 @@ export default new vuex.Store({
         setReplies(state, payload) {
             state.replies = payload;
         }
-        //PLEASE SET: 
-        // putVotes(), postPost(), postComment(), postReply()
-        // deletePost(), deleteComment(), deleteReply()
 
     },
     actions: {
@@ -91,7 +88,7 @@ export default new vuex.Store({
         // ADD A COMMENT
         addComment({ commit, dispatch }, payload) {
             api
-                .post("comments", payload)
+                .post("posts/" + payload.postId + "/comments", payload)
                 .then(res => {
                     dispatch("getComments", payload);
                 });
@@ -99,7 +96,7 @@ export default new vuex.Store({
         //ADD A REPLY
         addReply({ commit, dispatch }, payload) {
             api
-                .post("replies", payload)
+                .post("pots/" + payload.postId + "/comments" + payload.commentId + "/replies", payload)
                 .then(res => {
                     dispatch("getReplies", payload);
                 });
@@ -107,7 +104,7 @@ export default new vuex.Store({
         //DELETE A POST
         removePost({ commit, dispatch }, payload) {
             api
-                .delete("posts", payload)
+                .delete("posts/" + payload.postId)
                 .then(res => {
                     dispatch("getPosts");
                 });
@@ -115,7 +112,7 @@ export default new vuex.Store({
         //DELETE A COMMENT
         removeComment({ commit, dispatch }, payload) {
             api
-                .delete("comments", payload)
+                .delete("posts/" + payload.postId + "/comments" + payload.commentId)
                 .then(res => {
                     dispatch("getComments");
                 });
@@ -123,7 +120,7 @@ export default new vuex.Store({
         //DELETE A REPLY
         removeReply({ commit, dispatch }, payload) {
             api
-                .delete("replies", payload)
+                .delete("posts/" + payload.postId + "/comments" + payload.commentId + "replies" + payload._id)
                 .then(res => {
                     dispatch("getReplies");
                 });
@@ -136,6 +133,7 @@ export default new vuex.Store({
                     dispatch("getPosts");
                 });
         },
+        //UPDATE A COMMENT
         updateComment({ commit, dispatch }, payload) {
             api
                 .put("comments", payload)
@@ -143,6 +141,7 @@ export default new vuex.Store({
                     dispatch("getComments");
                 });
         },
+        //UPDATE A REPLY
         updateReply({ commit, dispatch }, payload) {
             api
                 .put("replies", payload)

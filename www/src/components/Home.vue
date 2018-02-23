@@ -32,19 +32,19 @@
           </div>
           <div class="row">
             <div class="form-group">
-              <form @submit.prevent="">
+              <form @submit.prevent="getComments(post)">
                 <input type="text" placeholder="Comment"></input>
                 <button type="submit">Add Comment</button>
               </form>
             </div>
           </div>
           <div class="row comment-row d-flex flex-column" v-for="comment in comments">
-            <p>{{comment.body}}}</p>
+            <p>{{comment.body}}</p>
             <p>
               <span># of replies: {{replies.length}}</span> by username</p>
           </div>
           <div class="row reply-row d-flex flex-column">
-            <p>Body of the reply</p>
+            <p>{{reply.body}}</p>
             <!-- still need to incorporate show/hide on reply rows LATER-->
             <p>by username</p>
           </div>
