@@ -11,7 +11,7 @@ router.get("/api/posts", (req, res, next) => {
         })
         .catch(next);
 })
-
+//Get all comments for post
 router.get("/api/posts/:postid/comments", (req, res, next) => {
     Comments.find({ postId: req.params.postid })
         .then(comments => {
@@ -19,7 +19,7 @@ router.get("/api/posts/:postid/comments", (req, res, next) => {
         })
         .catch(next)
 })
-
+//Get all replies for comment
 router.get("/api/posts/:postid/comments/:commentid/replies", (req, res, next) => {
     console.log(req.params.commentid)
     Replies.find({commentId: req.params.commentid})
@@ -30,13 +30,67 @@ router.get("/api/posts/:postid/comments/:commentid/replies", (req, res, next) =>
 })
 
 
-// CREATE USER
+// CREATE Post
 router.post("/api/posts", (req, res, next) => {
     Posts.create(req.body)
         .then(post => {
             res.send(post);
         })
         .catch(next);
+})
+
+//Delete Post
+router.delete("/api/posts/:postid", (req, res, next) => {
+    Posts.findByIdAndRemove(req.params.postid)
+        .then(post => {
+            res.send({message: "Successfully deleted post"})
+        })
+        .catch(next)
+})
+
+//Put Post
+router.put("/api/posts/:postid", (req, res, next) => {
+    Posts.findByIdAndUpdate(req.params.postid, req.body, {new: true})
+        .then(post => {
+            res.send({message: "Successfully updated post", data: post})
+        })
+        .catch(next)
+})
+
+//Delete Comment
+router.delete("/api/posts/:postid/comments/:commentid", (req, res, next) => {
+    Comments.findByIdAndRemove(req.params.commentid)
+        .then(comment => {
+            res.send({message: "Successfully deleted comment"})
+        })
+        .catch(next)
+})
+
+//Put Comment
+router.put("/api/posts/:postid/comments/:commentid", (req, res, next) => {
+    Comments.findByIdAndUpdate(req.params.commentid, req.body, {new: true})
+        .then(comment => {
+            res.send({message: "Succesfully updated comment", data: comment})
+        })
+        .catch(next)
+})
+
+//Delete Reply
+router.delete("/api/posts/:postid/comments/:commentid/replies/:replyid", (req, res, next) => {
+    Replies.findByIdAndRemove(req.params.replyid)
+        .then(reply => {
+            res.send({message: "Successfully deleted reply"})
+        })
+        .catch(next)
+})
+
+//Put reply
+router.put("/api/posts/:postid/comments/:commentid/replies/:replyid", (req, res, next) => {
+    Replies.findByIdAndUpdate(req.params.replyid, req.body, {new: true})
+        .then(reply => {
+            res.send({message: "Successfully updated reply", data: reply})
+        })
+        .catch(next)
 })
 
 module.exports = { router };

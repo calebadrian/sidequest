@@ -20,12 +20,12 @@ router.post("/api/comments", (req, res, next) => {
             .catch(next);
     })
 
-router.delete("/api/comments/:commentid", (req, res, next) => {
-    Comments.findByIdAndRemove(req.params.commentid)
-            .then(comment => {
-                res.send({message: "Successfully deleted comment"})
-            })
-            .catch(next)
-})
+// router.delete("/api/comments/:commentid", (req, res, next) => {
+//     Comments.findByIdAndRemove(req.params.commentid)
+//             .then(comment => {
+//                 res.send({message: "Successfully deleted comment"})
+//             })
+//             .catch(next)
+// })
 
 module.exports = { router };
