@@ -1,7 +1,7 @@
 var router = require("express").Router();
 var Posts = require("../models/post");
 var Comments = require("../models/comment");
-var Replies = require("../models/post");
+var Replies = require("../models/reply");
 
 // GET ALL USERS
 router.get("/api/posts", (req, res, next) => {
@@ -21,9 +21,9 @@ router.get("/api/posts/:postid/comments", (req, res, next) => {
 })
 
 router.get("/api/posts/:postid/comments/:commentid/replies", (req, res, next) => {
-    Replies.find({ commentId: req.params.commentid })
+    console.log(req.params.commentid)
+    Replies.find({commentId: req.params.commentid})
         .then(replies => {
-            console.log(replies)
             return res.send(replies)
         })
         .catch(next)
