@@ -10,6 +10,7 @@ title: {type: String, required: true},
 body: {type: String, required: true},
 date: {type: Date, required: true, default:Date.now()},
 image: {type: String},
+voteCount: {type: Number, default:0},
 userId: {type: ObjectId, ref: "User", required: true}
 });
 

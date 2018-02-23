@@ -128,7 +128,7 @@ export default new vuex.Store({
         //UPDATE A POST
         updatePost({ commit, dispatch }, payload) {
             api
-                .put("posts", payload)
+                .put("posts/" + payload.postId, payload)
                 .then(res => {
                     dispatch("getPosts");
                 });
@@ -136,7 +136,7 @@ export default new vuex.Store({
         //UPDATE A COMMENT
         updateComment({ commit, dispatch }, payload) {
             api
-                .put("comments", payload)
+                .put("posts/" + payload.postId + "/comments" + payload.commentId, payload)
                 .then(res => {
                     dispatch("getComments");
                 });
@@ -144,7 +144,7 @@ export default new vuex.Store({
         //UPDATE A REPLY
         updateReply({ commit, dispatch }, payload) {
             api
-                .put("replies", payload)
+                .put("posts/" + payload.postId + "/comments" + payload.commentId + "replies" + payload._id, payload)
                 .then(res => {
                     dispatch("getReplies");
                 });
