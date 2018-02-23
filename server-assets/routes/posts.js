@@ -21,7 +21,6 @@ router.get("/api/posts/:postid/comments", (req, res, next) => {
 })
 //Get all replies for comment
 router.get("/api/posts/:postid/comments/:commentid/replies", (req, res, next) => {
-    console.log(req.params.commentid)
     Replies.find({commentId: req.params.commentid})
         .then(replies => {
             return res.send(replies)
@@ -57,6 +56,15 @@ router.put("/api/posts/:postid", (req, res, next) => {
         .catch(next)
 })
 
+//Post Comment
+router.post("/api/posts/:postid/comments", (req, res, next) => {
+    Comments.create(req.body)
+        .then(comment => {
+            res.send(comment)
+        })
+        .catch(next)
+})
+
 //Delete Comment
 router.delete("/api/posts/:postid/comments/:commentid", (req, res, next) => {
     Comments.findByIdAndRemove(req.params.commentid)
@@ -71,6 +79,15 @@ router.put("/api/posts/:postid/comments/:commentid", (req, res, next) => {
     Comments.findByIdAndUpdate(req.params.commentid, req.body, {new: true})
         .then(comment => {
             res.send({message: "Succesfully updated comment", data: comment})
+        })
+        .catch(next)
+})
+
+//Post Reply
+router.post("/api/posts/:postid/comments/:commentid/replies", (req, res, next) => {
+    Replies.create(req.body)
+        .then(reply => {
+            res.send(reply)
         })
         .catch(next)
 })
