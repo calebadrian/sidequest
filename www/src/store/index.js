@@ -79,7 +79,7 @@ export default new vuex.Store({
         },
         // PLEASE WRITE:
         // putVotes(),
-        
+
         // ADD A POST
         addPost({ commit, dispatch }, payload) {
             api
@@ -128,5 +128,27 @@ export default new vuex.Store({
                     dispatch("getReplies");
                 });
         },
+        //UPDATE A POST
+        updatePost({ commit, dispatch }, payload) {
+            api
+                .put("posts", payload)
+                .then(res => {
+                    dispatch("getPosts");
+                });
+        },
+        updateComment({ commit, dispatch }, payload) {
+            api
+                .put("comments", payload)
+                .then(res => {
+                    dispatch("getComments");
+                });
+        },
+        updateReply({ commit, dispatch }, payload) {
+            api
+                .put("replies", payload)
+                .then(res => {
+                    dispatch("getReplies");
+                });
+        }
     }
 });
