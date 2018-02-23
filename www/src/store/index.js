@@ -14,7 +14,7 @@ export default new vuex.Store({
         user: {
             name: "testUser"
         },
-        posts: [], 
+        posts: [],
         comments: [],
         replies: []
         // tabling votes for now until vote key is added to Post model
@@ -35,10 +35,11 @@ export default new vuex.Store({
         //PLEASE SET: 
         // putVotes(), postPost(), postComment(), postReply()
         // deletePost(), deleteComment(), deleteReply()
+
     },
     actions: {
         // GET ALL POSTS
-        getPosts({ commit, dispatch }, payload) {
+        getPosts({ commit, dispatch }) {
             api
                 .get("posts")
                 .then(res => {
@@ -59,9 +60,9 @@ export default new vuex.Store({
                 });
         },
         // GET ALL REPLIES ON A COMMENT
-        getReplies({ commit, dispatch}, payload) {
+        getReplies({ commit, dispatch }, payload) {
             api
-                .get("posts/" + payload.postId+ "/comments/" + payload.commentId + "/replies")
+                .get("posts/" + payload.postId + "/comments/" + payload.commentId + "/replies")
                 .then(res => {
                     console.log(res);
                     commit("setReplies", res.data);
@@ -75,9 +76,57 @@ export default new vuex.Store({
                     console.log(res);
                     commit("setUsers", res.data);
                 });
-        }
+        },
         // PLEASE WRITE:
-        // putVotes(), postPost(), postComment(), postReply()
-        // deletePost(), deleteComment(), deleteReply()
+        // putVotes(),
+        
+        // ADD A POST
+        addPost({ commit, dispatch }, payload) {
+            api
+                .post("posts", payload)
+                .then(res => {
+                    dispatch("getPosts");
+                });
+        },
+        // ADD A COMMENT
+        addComment({ commit, dispatch }, payload) {
+            api
+                .post("comments", payload)
+                .then(res => {
+                    dispatch("getComments", payload);
+                });
+        },
+        //ADD A REPLY
+        addReply({ commit, dispatch }, payload) {
+            api
+                .post("replies", payload)
+                .then(res => {
+                    dispatch("getReplies", payload);
+                });
+        },
+        //DELETE A POST
+        removePost({ commit, dispatch }, payload) {
+            api
+                .delete("posts", payload)
+                .then(res => {
+                    dispatch("getPosts");
+                });
+        },
+        //DELETE A COMMENT
+        removeComment({ commit, dispatch }, payload) {
+            api
+                .delete("comments", payload)
+                .then(res => {
+                    dispatch("getComments");
+                });
+        },
+        //DELETE A REPLY
+        removeReply({ commit, dispatch }, payload) {
+            api
+                .delete("replies", payload)
+                .then(res => {
+                    dispatch("getReplies");
+                });
+        },
     }
 });
