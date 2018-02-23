@@ -14,6 +14,15 @@ router.get("/api/users", (req, res, next) =>{
 })
 
 
+// CREATE USER
+router.post("/api/users", (req, res, next) => {
+    Users.create(req.body)
+        .then(user => {
+            res.send(user);
+        })
+        .catch(next);
+ });
+
 module.exports = { router };
 
 ///is it working?
