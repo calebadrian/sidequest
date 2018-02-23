@@ -73,6 +73,11 @@
     },
     methods: {
 
+    },
+    computed: {
+      posts() {
+        return this.$store.state.posts
+      }
     }
   }
 </script>
