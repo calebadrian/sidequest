@@ -1,4 +1,3 @@
-import { url } from "inspector";
 
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
