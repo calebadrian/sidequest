@@ -1,5 +1,5 @@
 <template>
-    <div class="comment col-sm-12"">
+    <div class="comment col-sm-12">
 
 
         <p>{{comment.body}}</p>
@@ -14,7 +14,7 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <form @submit.prevent="addReply">
-                    <input type="text" name="reply" placeholder="Reply" v-model="reply"></input>
+                        <textarea type="text" name="reply" placeholder="Reply" v-model="reply" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
                     <button type="submit">Add Reply</button>
                 </form>
             </div>
