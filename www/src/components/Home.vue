@@ -4,16 +4,23 @@
       <div class="row">
         <!-- onclick, show this form row later-->
         <!-- tie in this form data in the postPost() function in index.js that you write-->
-        <div class="form-group">
-          <form @submit.prevent="addPost({title: $event.target.title.value, body: $event.target.body.value, image: $event.target.image.value})">
-            <input type="text" name="title" placeholder="Post Title"></input>
-            <textarea type="text" name="body" placeholder="Body" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            <input type="url" name="image" placeholder="Image URL"></input>
-            <button type="submit">Create Post</button>
+        <div class="col-sm-12">
 
-            <button type="reset">Reset</button>
+          <!-- toggleHide will toggle the hidden property in the data below -->
+          <button @click="toggleHide()">Add a Post</button>
 
-          </form>
+          <!-- v-if says that if this element is not hidden it will display -->
+          <div class="form-group" v-if=!hidden>
+            <form @submit.prevent="addPost({title: $event.target.title.value, body: $event.target.body.value, image: $event.target.image.value})">
+              <input type="text" name="title" placeholder="Post Title"></input>
+              <textarea type="text" name="body" placeholder="Body" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <input type="url" name="image" placeholder="Image URL"></input>
+              <button type="submit">Create Post</button>
+  
+              <button type="reset">Reset</button>
+  
+            </form>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -33,7 +40,8 @@
     name: 'Home',
     data() {
       return {
-        msg: 'testing'
+        msg: 'testing',
+        hidden: true
       }
     },
     methods: {
@@ -73,6 +81,11 @@
       updateReply(reply) {
         this.$store.dipatch('updateReply', reply)
       },
+      
+      // this function is the toggle of the hidden value to switch the display
+      toggleHide(){
+        this.hidden = !this.hidden
+      }
 
       // ADD METHODS FOR EACH ACTION YOU WRITE
     },
