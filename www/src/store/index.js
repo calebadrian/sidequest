@@ -129,8 +129,9 @@ export default new vuex.Store({
         },
         //UPDATE A POST
         updatePost({ commit, dispatch }, payload) {
+            console.log(payload._id)
             api
-                .put("posts/" + payload.postId, payload)
+                .put("posts/" + payload._id, payload)
                 .then(res => {
                     dispatch("getPosts");
                 });
