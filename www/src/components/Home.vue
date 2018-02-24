@@ -47,6 +47,9 @@
       getReplies(comment) {
         this.$store.dispatch('getReplies', comment);
       },
+      getVotes(post) {
+        this.$store.dispatch('getVotes', post)
+      },
       addPost(post) {
         this.$store.dispatch('addPost', post);
       },
@@ -86,6 +89,9 @@
       },
       replies() {
         return this.$store.state.replies;
+      },
+      votes() {
+        return this.$store.state.votes;
       }
     },
     components: {
