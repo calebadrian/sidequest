@@ -108,8 +108,7 @@
 
 
   img {
-    width: 350px;
-    margin: 1rem;
+    width: 75%;
   }
 
   /* h1,

@@ -9,17 +9,11 @@
                 <span>{{post.userId}}</span>
             </p>
         </div>
-        <div class="col-sm-4 padding1">
+        <div class="col-sm-6 padding1 text-center align-self-center d-inline-block">
             <img :src="post.image">
-        </div>
-        <div class="col-sm-2 padding1">
-            <div class="row">
+            <div class="d-inline-block">
                 <button @click="updatePostUp(post)">Up</button>
-            </div>
-            <div class="row">
                 <h3>{{post.voteCount}}</h3>
-            </div>
-            <div class="row">
                 <button @click="updatePostDown(post)">Down</button>
             </div>
         </div>
