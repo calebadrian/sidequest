@@ -122,4 +122,18 @@
   a {
     color: #42b983;
   }
+
+  /* div {
+    display: flex !important;
+    flex-direction: column;
+} */
+
+  .post{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .comment-row{
+    display: flex;
+  }
 </style>

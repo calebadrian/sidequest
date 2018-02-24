@@ -31,22 +31,16 @@
             </div>
         </div>
         <div class="row comment-row d-flex flex-column" v-for="comment in comments">
-            <p>{{comment.body}}</p>
-            <p>
-                <span v-if="comment.replies"># of replies: {{comment.replies.length}}</span> by username</p>
-                <div class="row reply-row d-flex flex-column" v-for="reply in comment.replies">
-                    <p>{{reply.body}}</p>
-                    <!-- still need to incorporate show/hide on reply rows LATER-->
-                    <p>by username</p>
-                </div>
-            </div>
+            <comment :comment="comment"></comment>
         </div>
     </div>
 </template>
 
 
 <script>
+    import comment from './Comment.vue'
     export default {
+        name: 'Comment',
         props: ['post'],
         mounted() {
             this.$store.dispatch('getComments', this.post)
@@ -60,6 +54,9 @@
             addComment(comment) {
                 this.$store.dispatch('addComment', comment);
             }
+        },
+        components:{
+            comment
         }
     }
 </script>
