@@ -16,7 +16,8 @@ export default new vuex.Store({
         },
         posts: [],
         comments: {},
-        replies: {}
+        replies: {},
+        
         // tabling votes for now until vote key is added to Post model
     },
     mutations: {
@@ -61,7 +62,7 @@ export default new vuex.Store({
             api
                 .get("posts/" + payload.postId + "/comments/" + payload._id + "/replies")
                 .then(res => {
-                    commit("setReplies", {commentId: payload._id, replies: res.data});
+                    commit("setReplies", { commentId: payload._id, replies: res.data });
                 });
         },
         // GET USER
@@ -99,7 +100,7 @@ export default new vuex.Store({
                 .post("posts/" + payload.postId + "/comments/" + payload.commentId + "/replies", payload)
                 .then(res => {
                     console.log(res)
-                    dispatch("getReplies", {_id: res.data.commentId, postId: res.data.postId});
+                    dispatch("getReplies", { _id: res.data.commentId, postId: res.data.postId });
                 });
         },
         //DELETE A POST
@@ -149,6 +150,14 @@ export default new vuex.Store({
                 .then(res => {
                     dispatch("getReplies");
                 });
-        }
+        },
+        //UPDATE VOTE COUNT
+        addVote({ commit, dispatch }, payload) {
+            api
+                .put("posts/" + payload.postId, payload)
+                .then(res => {
+                    dispatch("getVotes");
+                });
+        },
     }
 });

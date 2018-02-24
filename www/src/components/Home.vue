@@ -21,14 +21,6 @@
           <div class="row post-row" v-for="post in posts">
             <post :post="post"></post>
           </div>
-          <div class="col-sm-2">
-            <div class="row">
-              <button>Up</button>
-            </div>
-            <div class="row">
-              <button>Down</button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -54,6 +46,9 @@
       },
       getReplies(comment) {
         this.$store.dispatch('getReplies', comment);
+      },
+      getVotes(post) {
+        this.$store.dispatch('getVotes', post)
       },
       addPost(post) {
         this.$store.dispatch('addPost', post);
@@ -94,6 +89,9 @@
       },
       replies() {
         return this.$store.state.replies;
+      },
+      votes() {
+        return this.$store.state.votes;
       }
     },
     components:{

@@ -12,6 +12,14 @@
         <div class="col-sm-6">
             <img :src="post.image">
         </div>
+        <div class="col-sm-2">
+                <div class="row">
+                  <button @click="updatePostUp({post})">Up</button>
+                </div>
+                <div class="row">
+                  <button @click="updatePostDown({down})">Down</button>
+                </div>
+              </div>
         <div class="row">
             <div class="form-group">
                 <form @submit.prevent="addComment({body: $event.target.comment.value, postId: post._id, e: $event.target.reset()})">
@@ -43,6 +51,17 @@
         methods: {
             addComment(comment) {
                 this.$store.dispatch('addComment', comment);
+            },
+            updatePost(){
+                this.$store.dispatch('updatePost', post)
+            },
+            updatePostUp(post){
+                post.voteCount++ 
+                this.$store.dispatch('updatePost', post)
+            },
+            updatePostDown(post) {
+                post.voteCount--
+                this.$store.dispatch('updatePost', post)
             }
         },
         components:{
