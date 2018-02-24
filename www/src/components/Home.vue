@@ -7,7 +7,7 @@
         <div class="form-group">
           <form @submit.prevent="addPost({title: $event.target.title.value, body: $event.target.body.value, image: $event.target.image.value})">
             <input type="text" name="title" placeholder="Post Title"></input>
-            <input type="text" name="body" placeholder="Body"></input>
+            <textarea type="text" name="body" placeholder="Body" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             <input type="url" name="image" placeholder="Image URL"></input>
             <button type="submit">Create Post</button>
 
@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="row post-row" v-for="post in posts">
-              <post :post="post"></post>
+            <post :post="post"></post>
           </div>
         </div>
       </div>
@@ -110,39 +110,33 @@
     width: 75%;
   }
 
-  /* h1,
-  h2 {
-    font-weight: normal;
-  } */
+  .container {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
 
-  /* ul {
-    list-style-type: none;
-    padding: 0;
-  } */
 
-  /* li {
-    display: inline-block;
-    margin: 0 10px;
-  } */
 
-  a {
-    color: #42b983;
+  body {
+    background-color: #2c60c9;
+    background-image: url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
   }
 
   /* div {
     display: flex !important;
     flex-direction: column;
 } */
-  .comment-input-height{
+
+  .comment-input-height {
     height: 250px;
     width: 350px;
-  } 
-  .post{
+  }
+
+  .post {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .comment-row{
+  .comment-row {
     display: flex;
   }
 </style>
