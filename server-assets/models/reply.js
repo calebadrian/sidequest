@@ -8,7 +8,7 @@ var ObjectId = mongoose.SchemaTypes.ObjectId
 var schema = new Schema({
 body: {type: String, required: true},
 date: {type: Date, required: true, default:Date.now()},
-userId: {type: ObjectId, ref: "User", required: true},
+// userId: {type: ObjectId, ref: "User", required: true},
 postId: {type: ObjectId, ref: "Post", required: true},
 commentId: {type: ObjectId, ref: "Comment", required: true}
 });

@@ -38,7 +38,7 @@ export default new vuex.Store({
         // GET ALL POSTS
         getPosts({ commit, dispatch }) {
             api
-                .get("posts")
+                .get("posts/")
                 .then(res => {
                     console.log(res);
                     commit("setPosts", res.data);
@@ -79,6 +79,7 @@ export default new vuex.Store({
 
         // ADD A POST
         addPost({ commit, dispatch }, payload) {
+            debugger
             api
                 .post("posts", payload)
                 .then(res => {
@@ -87,6 +88,7 @@ export default new vuex.Store({
         },
         // ADD A COMMENT
         addComment({ commit, dispatch }, payload) {
+            console.log(payload);
             api
                 .post("posts/" + payload.postId + "/comments", payload)
                 .then(res => {
@@ -96,7 +98,7 @@ export default new vuex.Store({
         //ADD A REPLY
         addReply({ commit, dispatch }, payload) {
             api
-                .post("pots/" + payload.postId + "/comments" + payload.commentId + "/replies", payload)
+                .post("posts/" + payload.postId + "/comments" + payload.commentId + "/replies", payload)
                 .then(res => {
                     dispatch("getReplies", payload);
                 });

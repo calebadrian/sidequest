@@ -5,10 +5,10 @@
         <!-- onclick, show this form row later-->
         <!-- tie in this form data in the postPost() function in index.js that you write-->
         <div class="form-group">
-          <form @submit.prevent="">
-            <input type="text" placeholder="Post Title"></input>
-            <input type="text" placeholder="Body"></input>
-            <input type="url" placeholder="Image URL"></input>
+          <form @submit.prevent="addPost({title: $event.target.title.value, body: $event.target.body.value, image: $event.target.image.value})">
+            <input type="text" name="title" placeholder="Post Title"></input>
+            <input type="text" name="body" placeholder="Body"></input>
+            <input type="url" name="image" placeholder="Image URL"></input>
             <button type="submit">Create Post</button>
             <button type="reset">Reset</button>
           </form>
@@ -23,38 +23,38 @@
               <!--make this clickable later-->
               <p>
                 <span># of comments: {{comments.length}}</span>
-                <span>{{post.userId}}}</span>
+                <span>{{post.userId}}</span>
               </p>
             </div>
             <div class="col-sm-6">
-              <img src="//placehold.it/300x200">
+              <img :src="post.image">
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <form @submit.prevent="addComment({body: $event.target.comment.value, postId: post._id})">
+                  <input type="text" name="comment" placeholder="Comment"></input>
+                  <button type="submit">Add Comment</button>
+                </form>
+              </div>
+            </div>
+            <div class="row comment-row d-flex flex-column" v-for="comment in comments">
+              <p>{{comment.body}}</p>
+              <p>
+                <span># of replies: {{replies.length}}</span> by username</p>
+              <div class="row reply-row d-flex flex-column" v-for="reply in replies">
+                <p>{{reply.body}}</p>
+                <!-- still need to incorporate show/hide on reply rows LATER-->
+                <p>by username</p>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="form-group">
-              <form @submit.prevent="getComments(post)">
-                <input type="text" placeholder="Comment"></input>
-                <button type="submit">Add Comment</button>
-              </form>
+          <div class="col-sm-2">
+            <div class="row">
+              <button>Up</button>
             </div>
-          </div>
-          <div class="row comment-row d-flex flex-column" v-for="comment in comments">
-            <p>{{comment.body}}</p>
-            <p>
-              <span># of replies: {{replies.length}}</span> by username</p>
-          </div>
-          <div class="row reply-row d-flex flex-column">
-            <p>{{reply.body}}</p>
-            <!-- still need to incorporate show/hide on reply rows LATER-->
-            <p>by username</p>
-          </div>
-        </div>
-        <div class="col-sm-2">
-          <div class="row">
-            <button>Up</button>
-          </div>
-          <div class="row">
-            <button>Down</button>
+            <div class="row">
+              <button>Down</button>
+            </div>
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@
     },
     methods: {
       getPosts() {
-        this.$store.dipsatch('getPosts');
+        this.$store.dispatch('getPosts');
       },
       getComments(post) {
         this.$store.dispatch('getComments', post);
@@ -81,22 +81,22 @@
         this.$store.dispatch('getReplies', comment);
       },
       addPost(post) {
-        this.$store.dipsatch('addPost', post);
+        this.$store.dispatch('addPost', post);
       },
-      addComments(comment) {
-        this.$store.dipsatch('addComment', comment);
+      addComment(comment) {
+        this.$store.dispatch('addComment', comment);
       },
       addReply(reply) {
-        this.$store.dipsatch('addReply', reply);
+        this.$store.dispatch('addReply', reply);
       },
       removePost(post) {
-        this.$store.dipsatch('removePost', post)
+        this.$store.dispatch('removePost', post)
       },
       removeComment(comment) {
-        this.$store.dipsatch('removeComment', comment)
+        this.$store.dispatch('removeComment', comment)
       },
       removeReply(reply) {
-        this.$store.dipsatch('removeReply', reply)
+        this.$store.dispatch('removeReply', reply)
       },
       updatePost(post) {
         this.$store.dipatch('updatePost', post)
