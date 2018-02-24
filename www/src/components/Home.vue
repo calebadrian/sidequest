@@ -1,6 +1,13 @@
 <template>
   <div class="Home">
     <div class="container">
+      <div class="row logo-row justify-content-center">
+        <div class="col-sm-12 logo">
+          <img src="https://files.slack.com/files-pri/T1GGQN1RU-F9DM6DX4Z/side-quest-logo-2.png" class="logo">
+
+
+        </div>
+      </div>
       <div class="row">
         <!-- onclick, show this form row later-->
         <!-- tie in this form data in the postPost() function in index.js that you write-->
@@ -114,10 +121,19 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-  * {
+  /* * {
     border: solid 0.5px #000000;
+  } */
+
+  .logo-row {
+    background-color: rgb(42, 56, 66);
   }
 
+  .logo {
+    width: 500px;
+    height: 200px;
+    text-align: center;
+  }
 
   img {
     width: 75%;
@@ -130,7 +146,7 @@
 
 
   body {
-    background-color: #2c60c9;
+    background-color: rgb(42, 109, 140);
     background-image: url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
   }
 
