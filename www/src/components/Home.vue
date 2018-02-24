@@ -1,6 +1,12 @@
 <template>
   <div class="Home">
     <div class="container">
+      <div class="row logo-row">
+        <div class="col-sm-6">
+          <img src="https://files.slack.com/files-pri/T1GGQN1RU-F9DM6DX4Z/side-quest-logo-2.png">
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
       <div class="row">
         <!-- onclick, show this form row later-->
         <!-- tie in this form data in the postPost() function in index.js that you write-->
@@ -106,6 +112,9 @@
     border: solid 0.5px #000000;
   }
 
+  .logo-row {
+    background-color: rgb(42, 56, 66) 
+  }
 
   img {
     width: 75%;
@@ -118,7 +127,7 @@
 
 
   body {
-    background-color: #2c60c9;
+    background-color: rgb(42, 109, 140);
     background-image: url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
   }
 
