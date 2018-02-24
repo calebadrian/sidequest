@@ -117,8 +117,8 @@
   }
 
   .logo {
-    width: 500px;
-    height: 200px;
+    width: 60%;
+    height: auto;
     text-align: center;
   }
 
