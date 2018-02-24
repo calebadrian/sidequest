@@ -1,6 +1,6 @@
 <template>
   <div class="Home">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <!-- onclick, show this form row later-->
         <!-- tie in this form data in the postPost() function in index.js that you write-->
@@ -100,24 +100,26 @@
     border: solid 0.5px #000000;
   }
 
+
   img {
     width: 350px;
+    margin: 1rem;
   }
 
-  h1,
+  /* h1,
   h2 {
     font-weight: normal;
-  }
+  } */
 
-  ul {
+  /* ul {
     list-style-type: none;
     padding: 0;
-  }
+  } */
 
-  li {
+  /* li {
     display: inline-block;
     margin: 0 10px;
-  }
+  } */
 
   a {
     color: #42b983;

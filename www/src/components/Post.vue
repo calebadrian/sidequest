@@ -1,7 +1,7 @@
 <template>
     <div class="post">
-        <div class="col-sm-4">
-            <h1>{{post.title}}</h1>
+        <div class="col-sm-6 padding1">
+            <h3>{{post.title}}</h3>
             <p>{{post.body}}</p>
             <!--make this clickable later-->
             <p>
@@ -9,10 +9,10 @@
                 <span>{{post.userId}}</span>
             </p>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4 padding1">
             <img :src="post.image">
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2 padding1">
             <div class="row">
                 <button>Up</button>
             </div>
@@ -20,8 +20,8 @@
                 <button>Down</button>
             </div>
         </div>
-        <div class="col-sm-12">
-            <div class="row">
+        <div class="row">
+            <div class="col-sm-12">
                 <div class="form-group">
                     <form @submit.prevent="addComment({body: $event.target.comment.value, postId: post._id, e: $event.target.reset()})">
                         <input type="text" name="comment" placeholder="Comment"></input>
@@ -29,9 +29,9 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="row comment-row d-flex flex-column" v-for="comment in comments">
-            <comment :comment="comment"></comment>
+            <div class="col-sm-12" v-for="comment in comments">
+                <comment :comment="comment"></comment>
+            </div>
         </div>
     </div>
 </template>
@@ -60,3 +60,11 @@
         }
     }
 </script>
+
+<style>
+
+    .padding1 {
+        padding: 1rem
+    }
+
+</style>
