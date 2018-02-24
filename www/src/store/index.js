@@ -23,6 +23,9 @@ export default new vuex.Store({
     mutations: {
         setPosts(state, payload) {
             state.posts = payload;
+            
+            // Compares to values in the array and if b is greater than a then it goes above
+            // if you wanted to go in ascending order as opposed to descending flip b.voteCount and a.voteCount
             state.posts.sort(function (a, b){
                 return b.voteCount - a.voteCount
             })
@@ -90,7 +93,6 @@ export default new vuex.Store({
         },
         // ADD A COMMENT
         addComment({ commit, dispatch }, payload) {
-            console.log(payload.postId);
             api
                 .post("posts/" + payload.postId + "/comments", payload)
                 .then(res => {

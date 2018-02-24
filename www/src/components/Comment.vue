@@ -4,8 +4,8 @@
 
         <p>{{comment.body}}</p>
         <p>
-            <span># of replies: {{replies.length}}</span> by username</p>
-        <div class="col-sm-12 reply-row d-flex flex-column" v-for="reply in replies">
+            <span># of <span @click="toggleHide()">replies</span>: {{replies.length}}</span> by username</p>
+        <div class="col-sm-12 reply-row d-flex flex-column" v-for="reply in replies" v-if=!hidden>
             <p>{{reply.body}}</p>
             <!-- still need to incorporate show/hide on reply rows LATER-->
             <p>by username</p>
@@ -27,6 +27,7 @@
     export default {
         data(){
             return {
+                hidden: true,
                 reply: ''
             }
         },
@@ -48,6 +49,9 @@
                 }
                 console.log(reply)
                 this.$store.dispatch('addReply', reply);
+            },
+            toggleHide() {
+                this.hidden = !this.hidden
             }
         }
     }
