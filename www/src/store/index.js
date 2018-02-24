@@ -23,6 +23,9 @@ export default new vuex.Store({
     mutations: {
         setPosts(state, payload) {
             state.posts = payload;
+            state.posts.sort(function (a, b){
+                return b.voteCount - a.voteCount
+            })
         },
         setComments(state, payload) {
             vue.set(state.comments, payload.postId, payload.comments || [])
