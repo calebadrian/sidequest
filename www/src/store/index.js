@@ -15,7 +15,7 @@ export default new vuex.Store({
             name: "testUser"
         },
         posts: [],
-        comments: [],
+        comments: {},
         replies: []
         // tabling votes for now until vote key is added to Post model
     },
@@ -24,7 +24,7 @@ export default new vuex.Store({
             state.posts = payload;
         },
         setComments(state, payload) {
-            state.comments = payload;
+            vue.set(state.comments, payload.postId, payload.comments || [])
         },
         setUser(state, payload) {
             state.user = payload;
@@ -50,10 +50,10 @@ export default new vuex.Store({
         // GET ALL COMMENTS ON A POST
         getComments({ commit, dispatch }, payload) {
             api
-                .get("posts/" + payload.postId + "/comments")
+                .get("posts/" + payload._id + "/comments")
                 .then(res => {
                     console.log(res);
-                    commit("setComments", res.data);
+                    commit("setComments", { postId: payload._id, comments: res.data });
                 });
         },
         // GET ALL REPLIES ON A COMMENT
@@ -79,7 +79,6 @@ export default new vuex.Store({
 
         // ADD A POST
         addPost({ commit, dispatch }, payload) {
-            debugger
             api
                 .post("posts", payload)
                 .then(res => {
@@ -88,11 +87,11 @@ export default new vuex.Store({
         },
         // ADD A COMMENT
         addComment({ commit, dispatch }, payload) {
-            console.log(payload);
+            console.log(payload.postId);
             api
                 .post("posts/" + payload.postId + "/comments", payload)
                 .then(res => {
-                    dispatch("getComments", payload);
+                    dispatch("getComments", { _id: res.data.postId });
                 });
         },
         //ADD A REPLY
@@ -100,7 +99,7 @@ export default new vuex.Store({
             api
                 .post("posts/" + payload.postId + "/comments" + payload.commentId + "/replies", payload)
                 .then(res => {
-                    dispatch("getReplies", payload);
+                    dispatch("getReplies", res.data);
                 });
         },
         //DELETE A POST

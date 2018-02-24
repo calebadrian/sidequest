@@ -10,43 +10,16 @@
             <input type="text" name="body" placeholder="Body"></input>
             <input type="url" name="image" placeholder="Image URL"></input>
             <button type="submit">Create Post</button>
+            
             <button type="reset">Reset</button>
+
           </form>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-10">
           <div class="row post-row" v-for="post in posts">
-            <div class="col-sm-6">
-              <h1>{{post.title}}</h1>
-              <p>{{post.body}}}</p>
-              <!--make this clickable later-->
-              <p>
-                <span># of comments: {{comments.length}}</span>
-                <span>{{post.userId}}</span>
-              </p>
-            </div>
-            <div class="col-sm-6">
-              <img :src="post.image">
-            </div>
-            <div class="row">
-              <div class="form-group">
-                <form @submit.prevent="addComment({body: $event.target.comment.value, postId: post._id})">
-                  <input type="text" name="comment" placeholder="Comment"></input>
-                  <button type="submit">Add Comment</button>
-                </form>
-              </div>
-            </div>
-            <div class="row comment-row d-flex flex-column" v-for="comment in comments">
-              <p>{{comment.body}}</p>
-              <p>
-                <span># of replies: {{replies.length}}</span> by username</p>
-              <div class="row reply-row d-flex flex-column" v-for="reply in replies">
-                <p>{{reply.body}}</p>
-                <!-- still need to incorporate show/hide on reply rows LATER-->
-                <p>by username</p>
-              </div>
-            </div>
+            <post :post="post"></post>
           </div>
           <div class="col-sm-2">
             <div class="row">
@@ -63,10 +36,12 @@
 </template>
 
 <script>
+  import post from './Post.vue'
   export default {
     name: 'Home',
     data() {
       return {
+        commentCount: 0,
         msg: 'testing'
       }
     },
@@ -82,9 +57,6 @@
       },
       addPost(post) {
         this.$store.dispatch('addPost', post);
-      },
-      addComment(comment) {
-        this.$store.dispatch('addComment', comment);
       },
       addReply(reply) {
         this.$store.dispatch('addReply', reply);
@@ -106,7 +78,8 @@
       },
       updateReply(reply) {
         this.$store.dipatch('updateReply', reply)
-      }
+      },
+
       // ADD METHODS FOR EACH ACTION YOU WRITE
     },
     computed: {
@@ -122,6 +95,9 @@
       replies() {
         return this.$store.state.replies;
       }
+    },
+    components:{
+      post
     }
   }
 </script>
