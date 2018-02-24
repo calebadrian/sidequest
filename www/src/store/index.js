@@ -16,7 +16,7 @@ export default new vuex.Store({
         },
         posts: [],
         comments: {},
-        replies: []
+        replies: {}
         // tabling votes for now until vote key is added to Post model
     },
     mutations: {
@@ -30,7 +30,7 @@ export default new vuex.Store({
             state.user = payload;
         },
         setReplies(state, payload) {
-            state.replies = payload;
+            vue.set(state.replies, payload.commentId, payload.replies || [])
         }
 
     },
@@ -59,10 +59,9 @@ export default new vuex.Store({
         // GET ALL REPLIES ON A COMMENT
         getReplies({ commit, dispatch }, payload) {
             api
-                .get("posts/" + payload.postId + "/comments/" + payload.commentId + "/replies")
+                .get("posts/" + payload.postId + "/comments/" + payload._id + "/replies")
                 .then(res => {
-                    console.log(res);
-                    commit("setReplies", res.data);
+                    commit("setReplies", {commentId: payload._id, replies: res.data});
                 });
         },
         // GET USER
@@ -97,9 +96,10 @@ export default new vuex.Store({
         //ADD A REPLY
         addReply({ commit, dispatch }, payload) {
             api
-                .post("posts/" + payload.postId + "/comments" + payload.commentId + "/replies", payload)
+                .post("posts/" + payload.postId + "/comments/" + payload.commentId + "/replies", payload)
                 .then(res => {
-                    dispatch("getReplies", res.data);
+                    console.log(res)
+                    dispatch("getReplies", {_id: res.data.commentId, postId: res.data.postId});
                 });
         },
         //DELETE A POST
