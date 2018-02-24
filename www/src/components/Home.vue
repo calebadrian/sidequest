@@ -2,7 +2,7 @@
   <div class="Home">
     <div class="container">
       <div class="row logo-row justify-content-center">
-        <div class="col-sm-12 logo">
+        <div class="col-sm-12 text-center">
           <img src="https://files.slack.com/files-pri/T1GGQN1RU-F9DM6DX4Z/side-quest-logo-2.png" class="logo">
 
 
