@@ -7,7 +7,7 @@
         <div class="form-group">
           <form @submit.prevent="addPost({title: $event.target.title.value, body: $event.target.body.value, image: $event.target.image.value})">
             <input type="text" name="title" placeholder="Post Title"></input>
-            <input type="text" name="body" placeholder="Body"></input>
+            <textarea type="text" name="body" placeholder="Body" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             <input type="url" name="image" placeholder="Image URL"></input>
             <button type="submit">Create Post</button>
 
