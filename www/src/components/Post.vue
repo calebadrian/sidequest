@@ -17,7 +17,7 @@
                   <button @click="updatePostUp({post})">Up</button>
                 </div>
                 <div class="row">
-                  <button @click="updatePostDown({down})">Down</button>
+                  <button @click="updatePostDown({post})">Down</button>
                 </div>
               </div>
         <div class="row">
