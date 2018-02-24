@@ -1,17 +1,17 @@
 <template>
-    <div class="comment">
+    <div class="comment col-sm-12"">
 
 
         <p>{{comment.body}}</p>
         <p>
             <span># of replies: {{replies.length}}</span> by username</p>
-        <div class="row reply-row d-flex flex-column" v-for="reply in replies">
+        <div class="col-sm-12 reply-row d-flex flex-column" v-for="reply in replies">
             <p>{{reply.body}}</p>
             <!-- still need to incorporate show/hide on reply rows LATER-->
             <p>by username</p>
         </div>
 
-        <div class="row">
+        <div class="col-sm-12">
             <div class="form-group">
                 <form @submit.prevent="addReply">
                     <input type="text" name="reply" placeholder="Reply" v-model="reply"></input>

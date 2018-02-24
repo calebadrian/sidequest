@@ -19,24 +19,11 @@
             <div class="row">
                 <h3>{{post.voteCount}}</h3>
             </div>
-<<<<<<< HEAD
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <form @submit.prevent="addComment({body: $event.target.comment.value, postId: post._id, e: $event.target.reset()})">
-                        <input type="text" name="comment" placeholder="Comment"></input>
-                        <button type="submit">Add Comment</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-sm-12" v-for="comment in comments">
-=======
             <div class="row">
                 <button @click="updatePostDown(post)">Down</button>
             </div>
         </div>
-        <div class="row">
+        <div class="col-sm-12">
             <div class="form-group">
                 <form @submit.prevent="addComment({body: $event.target.comment.value, postId: post._id, e: $event.target.reset()})">
                     <input type="text" name="comment" placeholder="Comment"></input>
@@ -44,7 +31,6 @@
                 </form>
             </div>
             <div class="row comment-row d-flex flex-column" v-for="comment in comments">
->>>>>>> 975375c1fde0c3329678494f1f8c7532fc9430d6
                 <comment :comment="comment"></comment>
             </div>
         </div>
@@ -85,9 +71,7 @@
 </script>
 
 <style>
-
     .padding1 {
         padding: 1rem
     }
-
 </style>
