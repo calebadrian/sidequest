@@ -26,7 +26,8 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <form @submit.prevent="addComment({body: $event.target.comment.value, postId: post._id, e: $event.target.reset()})">
-                    <input type="text" name="comment" placeholder="Comment"></input>
+
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" type="text" name="comment" placeholder="Comment"></textarea>
                     <button type="submit">Add Comment</button>
                 </form>
             </div>

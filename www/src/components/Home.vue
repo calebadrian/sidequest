@@ -135,7 +135,10 @@
     display: flex !important;
     flex-direction: column;
 } */
-
+  .comment-input-height{
+    height: 250px;
+    width: 350px;
+  } 
   .post{
     display: flex;
     flex-wrap: wrap;
