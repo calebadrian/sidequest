@@ -5,7 +5,7 @@
             <p>{{post.body}}</p>
             <!--make this clickable later-->
             <p>
-                <span># of comments: {{comments.length}}</span>
+                <span># of <span @click="toggleHide()">comments</span>: {{comments.length}}</span>
                 <span>{{post.userId}}</span>
             </p>
         </div>
@@ -26,7 +26,7 @@
                 </form>
             </div>
             <div class="row comment-row d-flex flex-column" v-for="comment in comments">
-                <comment :comment="comment"></comment>
+                <comment :comment="comment" v-if=!hidden></comment>
             </div>
         </div>
     </div>
@@ -37,6 +37,11 @@
     import comment from './Comment.vue'
     export default {
         name: 'Comment',
+        data(){
+            return {
+                hidden: true,
+            }
+        },
         props: ['post'],
         mounted() {
             this.$store.dispatch('getComments', this.post)
@@ -57,6 +62,9 @@
             updatePostDown(post) {
                 post.voteCount--
                 this.$store.dispatch('updatePost', post)
+            },
+            toggleHide(){
+                this.hidden = !this.hidden
             }
         },
         components: {

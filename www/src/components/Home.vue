@@ -33,7 +33,6 @@
     name: 'Home',
     data() {
       return {
-        commentCount: 0,
         msg: 'testing'
       }
     },

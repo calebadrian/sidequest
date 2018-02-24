@@ -1,5 +1,5 @@
 <template>
-    <div class="comment col-sm-12"">
+    <div class="comment col-sm-12">
 
 
         <p>{{comment.body}}</p>
