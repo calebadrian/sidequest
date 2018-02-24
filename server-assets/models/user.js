@@ -4,7 +4,7 @@ var schemaName = "User";
 
 var schema = new Schema({
  name: { type: String, required: true },
- avatar: {type: String},
+ avatar: {type: String, default: '//robohash.org'+this.name+".png"},
  username: {type: String, required: true},
  //password: {type: Number}   optinoal to add later
 
