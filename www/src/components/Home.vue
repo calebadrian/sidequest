@@ -1,11 +1,12 @@
 <template>
   <div class="Home">
     <div class="container">
-      <div class="row logo-row">
-        <div class="col-sm-6">
-          <img src="https://files.slack.com/files-pri/T1GGQN1RU-F9DM6DX4Z/side-quest-logo-2.png">
+      <div class="row logo-row justify-content-center">
+        <div class="col-sm-12 logo">
+          <img src="https://files.slack.com/files-pri/T1GGQN1RU-F9DM6DX4Z/side-quest-logo-2.png" class="logo">
+
+
         </div>
-        <div class="col-sm-6"></div>
       </div>
       <div class="row">
         <!-- onclick, show this form row later-->
@@ -107,12 +108,18 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-  * {
+  /* * {
     border: solid 0.5px #000000;
-  }
+  } */
 
   .logo-row {
-    background-color: rgb(42, 56, 66) 
+    background-color: rgb(42, 56, 66);
+  }
+
+  .logo {
+    width: 500px;
+    height: 200px;
+    text-align: center;
   }
 
   img {
