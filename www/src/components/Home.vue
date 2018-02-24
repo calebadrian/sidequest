@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="row post-row" v-for="post in posts">
-              <post :post="post"></post>
+            <post :post="post"></post>
           </div>
         </div>
       </div>
@@ -111,39 +111,33 @@
     width: 75%;
   }
 
-  /* h1,
-  h2 {
-    font-weight: normal;
-  } */
+  .container {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
 
-  /* ul {
-    list-style-type: none;
-    padding: 0;
-  } */
 
-  /* li {
-    display: inline-block;
-    margin: 0 10px;
-  } */
 
-  a {
-    color: #42b983;
+  body {
+    background-color: #2c60c9;
+    background-image: url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
   }
 
   /* div {
     display: flex !important;
     flex-direction: column;
 } */
-  .comment-input-height{
+
+  .comment-input-height {
     height: 250px;
     width: 350px;
-  } 
-  .post{
+  }
+
+  .post {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .comment-row{
+  .comment-row {
     display: flex;
   }
 </style>
