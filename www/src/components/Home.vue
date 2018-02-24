@@ -10,24 +10,16 @@
             <input type="text" name="body" placeholder="Body"></input>
             <input type="url" name="image" placeholder="Image URL"></input>
             <button type="submit">Create Post</button>
-            
+
             <button type="reset">Reset</button>
 
           </form>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-10">
+        <div class="col-sm-12">
           <div class="row post-row" v-for="post in posts">
-            <post :post="post"></post>
-          </div>
-          <div class="col-sm-2">
-            <div class="row">
-              <button>Up</button>
-            </div>
-            <div class="row">
-              <button>Down</button>
-            </div>
+              <post :post="post"></post>
           </div>
         </div>
       </div>
@@ -96,16 +88,20 @@
         return this.$store.state.replies;
       }
     },
-    components:{
+    components: {
       post
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
   * {
     border: solid 0.5px #000000;
+  }
+
+  img {
+    width: 350px;
   }
 
   h1,
