@@ -37,10 +37,6 @@ router.post("/auth/login", (req, res) => {
 });
 
 
-router.put('/auth/user', (req, res) =>{
-  
-})
-
 
 
 

@@ -8,7 +8,8 @@ const SALT_FACTOR = 13;
 var roles = ["public", "moderator", "admin"];
 
 var schema = new Schema({
-  name: { type: String, required: true },
+  name: { type: String},
+  // required: true 
   email: { type: String, required: true, unique: true, lowercase: true },
   password: { type: String, required: true, minlength: 6 },
   created: { type: Number, default: Date.now(), required: true },
