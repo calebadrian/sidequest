@@ -4,7 +4,7 @@
 
         <p>{{comment.body}}</p>
         <p>
-            <span># of <span @click="toggleHide()">replies</span>: {{replies.length}}</span> by username</p>
+            <span class="comment-highlight"@click="toggleHide()">{{replies.length}} replies</span></p>
         <div class="col-sm-12 reply-row d-flex flex-column" v-for="reply in replies" v-if=!hidden>
             <p>{{reply.body}}</p>
             <!-- still need to incorporate show/hide on reply rows LATER-->
@@ -13,7 +13,8 @@
 
         <div class="col-sm-12">
             <div class="form-group">
-                <form @submit.prevent="addReply">
+                <button class="btn-info" v-if=!buttonhidden @click="toggleFormHide()">Add Reply</button>
+                <form v-if=!formhidden @submit.prevent="addReply">
                         <textarea type="text" name="reply" placeholder="Reply" v-model="reply" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
                     <button type="submit">Add Reply</button>
                 </form>
@@ -28,6 +29,8 @@
         data(){
             return {
                 hidden: true,
+                formhidden: true,
+                buttonhidden: true,
                 reply: ''
             }
         },
@@ -52,7 +55,19 @@
             },
             toggleHide() {
                 this.hidden = !this.hidden
+                this.buttonhidden = !this.buttonhidden
+            },
+            toggleFormHide() {
+                this.formhidden = !this.formhidden
             }
         }
     }
 </script>
+
+<style>
+    .comment-highlight:hover{
+        transition: linear all .2s;
+        color: blue;
+        user-select: none;
+    }
+</style>

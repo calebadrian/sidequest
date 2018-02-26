@@ -14,7 +14,7 @@
         <div class="col-sm-12">
 
           <!-- toggleHide will toggle the hidden property in the data below -->
-          <button @click="toggleHide()">Add a Post</button>
+          <button class="btn-info" @click="toggleHide()">Add a Post</button>
 
           <!-- v-if says that if this element is not hidden it will display -->
           <div class="form-group" v-if=!hidden>
@@ -22,19 +22,17 @@
               <input type="text" name="title" placeholder="Post Title"></input>
               <textarea type="text" name="body" placeholder="Body" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               <input type="url" name="image" placeholder="Image URL"></input>
-              <button type="submit">Create Post</button>
+              <button class="btn-success" type="submit">Create Post</button>
   
-              <button type="reset">Reset</button>
+              <button class="btn-danger" type="reset">Reset</button>
   
             </form>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
-          <div class="row post-row" v-for="post in posts">
-            <post :post="post"></post>
-          </div>
+        <div class="col-sm-12 post-row" v-for="post in posts">
+            <post :post="post" class="post-row"></post>
         </div>
       </div>
     </div>
@@ -140,7 +138,11 @@
   }
 
   .container {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(200, 200, 200, 0.9);
+  }
+
+  .post-row {
+    width: 100%
   }
 
 
@@ -154,11 +156,6 @@
     display: flex !important;
     flex-direction: column;
 } */
-
-  .comment-input-height {
-    height: 250px;
-    width: 350px;
-  }
 
   .post {
     display: flex;
