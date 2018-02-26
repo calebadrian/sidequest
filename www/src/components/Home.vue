@@ -12,7 +12,23 @@
         <!-- onclick, show this form row later-->
         <!-- tie in this form data in the postPost() function in index.js that you write-->
         <div class="col-sm-12">
+          <button @click="toggleHide()">Login</button>
+          <form action="/action_page.php" @submit="login()">
+            <div class="form-group" v-if=!hidden>
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" v-model="user.name">  
+              <label for="email">Email address:</label>
+              <input type="email" class="form-control" id="email" v-model="user.email">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" id="pwd" v-model="user.password">
+                <input type="checkbox"> Remember me</label>
+                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="primary" class="btn btn-default" @click="createUser()">Create Account</button>
+              </div>
+          </form>
+        </div>
 
+        <div class="col-sm-12">
           <!-- toggleHide will toggle the hidden property in the data below -->
           <button class="btn-info" @click="toggleHide()">Add a Post</button>
 
@@ -46,10 +62,17 @@
     data() {
       return {
         msg: 'testing',
-        hidden: true
+        hidden: true,
+        user: {}
       }
     },
     methods: {
+      createUser() {
+        this.$store.dispatch('createUser', this.user);
+      },
+      login() {
+        this.$store.dispatch('login', this.user);
+      },
       getPosts() {
         this.$store.dispatch('getPosts');
       },
@@ -86,9 +109,9 @@
       updateReply(reply) {
         this.$store.dipatch('updateReply', reply)
       },
-      
+
       // this function is the toggle of the hidden value to switch the display
-      toggleHide(){
+      toggleHide() {
         this.hidden = !this.hidden
       }
 
@@ -144,8 +167,6 @@
   .post-row {
     width: 100%
   }
-
-
 
   body {
     background-color: rgb(42, 109, 140);

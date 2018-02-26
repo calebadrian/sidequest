@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var connectionString = 'mongodb://test:test@ds044907.mlab.com:44907/delete-me';
+// var connectionString = 'mongodb://test:test@ds044907.mlab.com:44907/delete-me';
+var connectionString = 'mongodb://test:test@ds044907.mlab.com:44907/mwm-db'
 var connection = mongoose.connection;
 
 mongoose.connect(connectionString);

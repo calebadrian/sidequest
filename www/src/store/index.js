@@ -71,13 +71,23 @@ export default new vuex.Store({
                     commit("setReplies", { commentId: payload._id, replies: res.data });
                 });
         },
-        // GET USER
-        getUser({ commit, dispatch }, payload) {
+        // CREATE AN ACCOUNT
+        createUser({commit, dispatch}, payload){
             api
-                .get("users")
+                .post("/auth/register")
                 .then(res => {
                     console.log(res);
-                    commit("setUsers", res.data);
+                    commit("setUser", res.data);
+                });
+        },
+
+        // LOGIN
+        login({ commit, dispatch }, payload) {
+            api
+                .get("/auth/login")
+                .then(res => {
+                    console.log(res);
+                    commit("setUser", res.data);
                 });
         },
         // PLEASE WRITE:
