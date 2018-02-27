@@ -11,8 +11,8 @@
                   <label for="pwd">Password:</label>
                   <input type="password" v-model="user.password" placeholder="password">
                     <input type="checkbox"> Remember me</label>
-                    <button type="submit" class="btn btn-default" @click="login()">Submit</button>
-                    <button type="primary" class="btn btn-default" @click="createUser()">Create Account</button>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="primary" class="btn btn-default">Create Account</button>
                   </div>
               </form>
         </div>

@@ -15,6 +15,7 @@ router.post("/auth/register", (req, res) => {
       user.password = null;
       delete user.password;
       req.session.uid = user._id
+      req.session.save()
       return res.send(user);
     })
     .catch(err => res.status(401).send(errorMessage));
@@ -22,7 +23,6 @@ router.post("/auth/register", (req, res) => {
 
 router.post("/auth/login", (req, res) => {
   Users.findOne({ email: req.body.email }).then(user => {
-    console.log(user)
     if (!user) {
       return res.status(401).send(errorMessage);
     }
@@ -33,7 +33,9 @@ router.post("/auth/login", (req, res) => {
     user.password = null;
     delete user.password;
     req.session.uid = user._id
-    res.send(user);
+    req.session.save()
+    console.log(req.session.uid)
+    return res.send(user);
   });
 });
 

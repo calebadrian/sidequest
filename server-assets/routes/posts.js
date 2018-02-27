@@ -38,8 +38,8 @@ router.get("/api/posts/:postid/comments/:commentid/replies", (req, res, next) =>
 
 
 // CREATE Post
-router.post("/api/posts", (req, res, next) => {
-    req.body.creatorId = req.session.uid;    
+router.post("/api/posts/", (req, res, next) => { 
+    req.body.creatorId = req.session.uid;   
     
     Posts.create(req.body)
         .then(post => {

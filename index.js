@@ -30,7 +30,7 @@ server.use(authRoutes);
 
 
 server.use("/api/*", (req, res, next) => {
-    if (req.method.toLowerCase() != "get" && !req.session.uid) {
+    if (req.method.toLowerCase() !== "get" && !req.session.uid) {
         return res.status(401).send({ error: "PLEASE LOGIN TO CONTINUE" });
     }
     

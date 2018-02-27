@@ -5,7 +5,8 @@ import router from "../router"
 
 var api = axios.create({
     baseURL: "//localhost:3000/api/",
-    timeout: 5000
+    timeout: 5000,
+    withCredentials: true
 });
 
 var auth = axios.create({
@@ -75,7 +76,6 @@ export default new vuex.Store({
             api
                 .get("posts/" + payload._id + "/comments")
                 .then(res => {
-                    console.log(res);
                     commit("setComments", { postId: payload._id, comments: res.data });
                 });
         },
@@ -90,7 +90,7 @@ export default new vuex.Store({
         // ADD A POST
         addPost({ commit, dispatch }, payload) {
             api
-                .post("posts", payload)
+                .post("posts/", payload)
                 .then(res => {
                     dispatch("getPosts");
                 });
