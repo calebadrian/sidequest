@@ -43,6 +43,9 @@
   import post from './Post.vue'
   export default {
     name: 'Home',
+    mounted() {
+      this.$store.dispatch('getPosts')
+    },
     data() {
       return {
         msg: 'testing',
@@ -51,9 +54,6 @@
       }
     },
     methods: {
-      login() {
-        this.$store.dispatch('login', this.user);
-      },
       getPosts() {
         this.$store.dispatch('getPosts');
       },

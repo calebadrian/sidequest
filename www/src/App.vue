@@ -11,8 +11,7 @@
 export default {
   name: 'App',
   mounted(){
-    this.$store.dispatch('getPosts')
-    router.push('Login')
+    this.$store.dispatch('authenticate')
   }
 }
 </script>

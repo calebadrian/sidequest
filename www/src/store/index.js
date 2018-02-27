@@ -183,6 +183,16 @@ export default new vuex.Store({
                     console.log('Invalid username or password')
                 })
         },
+        authenticate({commit, dispatch}){
+            auth
+                .get('authenticate')
+                    .then(res => {
+                        commit('setUser', res.data)
+                    })
+                    .catch(err => {
+                        console.log('Invalid Username or Password')
+                    })
+        },
         createUser({ commit, dispatch }, payload) {
             auth
                 .post("register", payload)
