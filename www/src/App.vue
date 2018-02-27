@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <div class="our-div">
 
       
       <router-view/>
-    </div>
   </div>
 </template>
 
 <script>
+  import router from './router'
 export default {
   name: 'App',
   mounted(){
     this.$store.dispatch('getPosts')
+    router.push('Login')
   }
 }
 </script>
@@ -20,7 +20,4 @@ export default {
 <style>
 
 
-/* .our-div {
-  display: inline-flex!important
-} */
 </style>

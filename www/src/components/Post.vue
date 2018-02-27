@@ -6,7 +6,7 @@
                 <p>{{post.body}}</p>
                 <!--make this clickable later-->
                 <p>
-                    <span class="comment-highlight" @click="toggleHide()">{{comments.length}} comments</span>
+                    <router-link :to="{name: 'Comment', params: {postId: post._id}}">{{comments.length}} comments</router-link>
                     <span>{{post.userId}}</span>
                 </p>
             </div>
@@ -24,7 +24,7 @@
                     <button class="btn-info" v-if=formhidden @click="toggleFormHide()">Add Comment</button>
                     <form v-if=!formhidden @submit.prevent="addComment({body: $event.target.comment.value, postId: post._id, e: $event.target.reset()})">
 
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" type="text" name="comment" placeholder="Comment"></textarea>
+                        <textarea class="form-control" rows="3" type="text" name="comment" placeholder="Comment"></textarea>
                         <button type="submit">Add Comment</button>
                     </form>
                 </div>
@@ -40,9 +40,10 @@
 <script>
     import comment from './Comment.vue'
     export default {
-        name: 'Comment',
+        name: 'Post',
         data() {
             return {
+                postId: this.$route.params.postId,
                 hidden: true,
                 formhidden: true,
                 counter: 0
@@ -103,7 +104,8 @@
         color: blue;
         user-select: none;
     }
-    .full-width{
+
+    .full-width {
         width: 100%
     }
 </style>

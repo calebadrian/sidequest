@@ -1,43 +1,48 @@
 import vue from "vue";
 import vuex from "vuex";
 import axios from "axios";
+import router from "../router"
 
 var api = axios.create({
     baseURL: "//localhost:3000/api/",
     timeout: 5000
 });
 
+var auth = axios.create({
+    baseURL: "//localhost:3000/auth/",
+    timeout: 5000,
+    withCredentials: true
+});
+
 vue.use(vuex);
 
 export default new vuex.Store({
     state: {
-        user: {
-            name: "testUser"
-        },
+        user: {},
         posts: [],
         comments: {},
         replies: {},
-        
+
         // tabling votes for now until vote key is added to Post model
     },
     mutations: {
         setPosts(state, payload) {
             state.posts = payload;
-            
+
             // Compares to values in the array and if b is greater than a then it goes above
             // if you wanted to go in ascending order as opposed to descending flip b.voteCount and a.voteCount
-            state.posts.sort(function (a, b){
+            state.posts.sort(function (a, b) {
                 return b.voteCount - a.voteCount
             })
         },
         setComments(state, payload) {
             vue.set(state.comments, payload.postId, payload.comments || [])
         },
-        setUser(state, payload) {
-            state.user = payload;
-        },
         setReplies(state, payload) {
             vue.set(state.replies, payload.commentId, payload.replies || [])
+        },
+        setUser(state, payload) {
+            state.user = payload;
         }
 
     },
@@ -54,6 +59,17 @@ export default new vuex.Store({
                     console.log(err);
                 });
         },
+        // getPost({commit, dispatch}, payload) {
+        //     api
+        //         .get("posts/" + payload._id)
+        //         .then(res => {
+        //             console.log(res);
+        //             commit("setPost", res.data);
+        //         })
+        //         .catch(err => {
+        //             console.log(err)
+        //         })
+        // },
         // GET ALL COMMENTS ON A POST
         getComments({ commit, dispatch }, payload) {
             api
@@ -71,28 +87,6 @@ export default new vuex.Store({
                     commit("setReplies", { commentId: payload._id, replies: res.data });
                 });
         },
-        // CREATE AN ACCOUNT
-        createUser({commit, dispatch}, payload){
-            api
-                .post("/auth/register")
-                .then(res => {
-                    console.log(res);
-                    commit("setUser", res.data);
-                });
-        },
-
-        // LOGIN
-        login({ commit, dispatch }, payload) {
-            api
-                .get("/auth/login")
-                .then(res => {
-                    console.log(res);
-                    commit("setUser", res.data);
-                });
-        },
-        // PLEASE WRITE:
-        // putVotes(),
-
         // ADD A POST
         addPost({ commit, dispatch }, payload) {
             api
@@ -174,6 +168,30 @@ export default new vuex.Store({
                 .then(res => {
                     dispatch("getVotes");
                 });
+        },
+        // LOGIN
+        // PLEASE WRITE:
+        // putVotes(),
+        login({ commit, dispatch }, payload) {
+            auth
+                .post("login", payload)
+                .then(user => {
+                    commit("setUser", user.data)
+                    router.push({name: "Home"})
+                })
+                .catch(err => {
+                    console.log('Invalid username or password')
+                })
+        },
+        createUser({ commit, dispatch }, payload) {
+            auth
+                .post("register", payload)
+                .then(res => {
+                    commit("setUser", res.data);
+                })
+                .catch(err => {
+                    console.log('Invalid username or password')
+                })
         },
     }
 });

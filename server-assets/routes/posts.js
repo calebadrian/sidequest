@@ -11,6 +11,14 @@ router.get("/api/posts", (req, res, next) => {
         })
         .catch(next);
 })
+//GET ONE POST
+router.get("/api/posts/:postid", (req, res, next) => {
+    Posts.findById(req.params.id)
+        .then(post => {
+            return res.send(post)
+        })
+        .catch(next)
+})
 //Get all comments for post
 router.get("/api/posts/:postid/comments", (req, res, next) => {
     Comments.find({ postId: req.params.postid })
