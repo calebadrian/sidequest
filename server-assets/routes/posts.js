@@ -52,7 +52,11 @@ router.post("/api/posts/", (req, res, next) => {
 router.delete("/api/posts/:postid", (req, res, next) => {
     Posts.findOneAndRemove({creatorId: req.session.uid, _id: req.params.postid})
         .then(post => {
-            res.send({message: "Successfully deleted post"})
+            if (!post){
+                res.status(401).send({error: "Not authorized to remove post"})
+            } else {
+                res.send({message: "Successfully deleted post"})
+            }
         })
         .catch(next)
 })
