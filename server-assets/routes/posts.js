@@ -50,7 +50,7 @@ router.post("/api/posts/", (req, res, next) => {
 
 //Delete Post
 router.delete("/api/posts/:postid", (req, res, next) => {
-    Posts.findByIdAndRemove(req.params.postid)
+    Posts.findOneAndRemove({creatorId: req.session.uid, _id: req.params.postid})
         .then(post => {
             res.send({message: "Successfully deleted post"})
         })

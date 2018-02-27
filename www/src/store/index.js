@@ -180,6 +180,7 @@ export default new vuex.Store({
                     router.push({name: "Home"})
                 })
                 .catch(err => {
+                    router.push({name: "Login"})
                     console.log('Invalid username or password')
                 })
         },
@@ -188,9 +189,11 @@ export default new vuex.Store({
                 .get('authenticate')
                     .then(res => {
                         commit('setUser', res.data)
+                        router.push({name: "Home"})
                     })
                     .catch(err => {
                         console.log('Invalid Username or Password')
+                        router.push({name: "Login"})
                     })
         },
         createUser({ commit, dispatch }, payload) {
@@ -198,9 +201,11 @@ export default new vuex.Store({
                 .post("register", payload)
                 .then(res => {
                     commit("setUser", res.data);
+                    router.push({name: "Home"})
                 })
                 .catch(err => {
                     console.log('Invalid username or password')
+                    router.push({name: "Login"})
                 })
         },
     }
