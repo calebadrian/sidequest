@@ -5,6 +5,7 @@
                 <h3><router-link :to="{name: 'Example', params: {postId: post._id}}">{{post.title}}</router-link></h3>
                 <p>{{post.body}}</p>
                 <!--make this clickable later-->
+                <p><button class="btn-danger" @click="removePost(post)">Remove Post</button></p>
                 <p>
                     <span>{{comments.length}} comments</span>
                     <span>{{post.userId}}</span>
@@ -63,7 +64,11 @@
         },
         methods: {
             addComment(comment) {
-                this.$store.dispatch('addComment', comment);
+                this.$store.dispatch('addComment', comment)
+            },
+            removePost(post){
+                console.log('remove post working?')
+                this.$store.dispatch('removePost', post)   
             },
             updatePostUp(post) {
                 post.voteCount++
