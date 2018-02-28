@@ -23,7 +23,6 @@ router.get("/api/posts/:postid", (req, res, next) => {
 router.get("/api/posts/:postid/comments", (req, res, next) => {
     Comments.find({ postId: req.params.postid })
         .then(comments => {
-            console.log(comments)
             return res.send(comments)
         })
         .catch(next)

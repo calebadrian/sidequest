@@ -81,6 +81,13 @@ export default new vuex.Store({
                     commit("setComments", { postId: payload._id, comments: res.data });
                 });
         },
+        getCommentsById({commit, dispatch}, payload){
+            api
+                .get("posts/" + payload + "/comments")
+                .then(res => {
+                    commit("setComments", { postId: payload, comments: res.data});
+                })
+        },
         // GET ALL REPLIES ON A COMMENT
         getReplies({ commit, dispatch }, payload) {
             api
