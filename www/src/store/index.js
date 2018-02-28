@@ -117,8 +117,7 @@ export default new vuex.Store({
         //DELETE A POST
         removePost({ commit, dispatch }, payload) {
             api
-            console.log('trying to delete post- did I reach the store?')
-                .delete("posts/" + payload.postId)
+                .delete("posts/" + payload._id)
                 .then(res => {
                     dispatch("getPosts");
                 });

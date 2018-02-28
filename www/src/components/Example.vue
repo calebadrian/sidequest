@@ -1,6 +1,7 @@
 <template>
     <div class="example">
         <h3>{{activePost.title}}</h3>
+        <p>{{activePost.body}}</p>
     </div>
 </template>
 
@@ -13,7 +14,7 @@
         },
         computed: {
             activePost() {
-                this.$store.state.activePost
+                return this.$store.state.activePost
             }
         }
     }
