@@ -13,7 +13,7 @@ router.get("/api/posts", (req, res, next) => {
 })
 //GET ONE POST
 router.get("/api/posts/:postid", (req, res, next) => {
-    Posts.findById(req.params.id)
+    Posts.findById(req.params.postid)
         .then(post => {
             return res.send(post)
         })
@@ -23,6 +23,7 @@ router.get("/api/posts/:postid", (req, res, next) => {
 router.get("/api/posts/:postid/comments", (req, res, next) => {
     Comments.find({ postId: req.params.postid })
         .then(comments => {
+            console.log(comments)
             return res.send(comments)
         })
         .catch(next)

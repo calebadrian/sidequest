@@ -2,11 +2,11 @@
     <div class="post">
         <div class="row d-flex justify-content-between align-items-center full-width">
             <div class="col-sm-6 padding1">
-                <h3>{{post.title}}</h3>
+                <h3><router-link :to="{name: 'Example', params: {postId: post._id}}">{{post.title}}</router-link></h3>
                 <p>{{post.body}}</p>
                 <!--make this clickable later-->
                 <p>
-                    <router-link :to="{name: 'Comment', params: {postId: post._id}}">{{comments.length}} comments</router-link>
+                    <span>{{comments.length}} comments</span>
                     <span>{{post.userId}}</span>
                 </p>
             </div>
@@ -51,11 +51,14 @@
         },
         props: ['post'],
         mounted() {
-            this.$store.dispatch('getComments', this.post)
+            this.$store.dispatch('getPosts')
         },
         computed: {
             comments() {
                 return this.$store.state.comments[this.post._id] || []
+            },
+            activePost() {
+                return this.$store.state.activePost
             }
         },
         methods: {

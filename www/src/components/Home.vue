@@ -32,7 +32,9 @@
       </div>
       <div class="row">
         <div class="col-sm-12 post-row" v-for="post in posts">
-            <post :post="post" class="post-row"></post>
+            <div :class="{active: activePost == post}">
+              <post :post="post" class="post-row"></post>
+            </div>
         </div>
       </div>
     </div>
@@ -116,6 +118,9 @@
       },
       votes() {
         return this.$store.state.votes;
+      },
+      activePost() {
+        return this.$store.state.activePost
       }
     },
     components: {

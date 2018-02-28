@@ -34,7 +34,6 @@ router.post("/auth/login", (req, res) => {
     delete user.password;
     req.session.uid = user._id
     req.session.save()
-    console.log(req.session.uid)
     return res.send(user);
   });
 });

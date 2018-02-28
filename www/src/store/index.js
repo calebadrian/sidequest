@@ -23,6 +23,7 @@ export default new vuex.Store({
         posts: [],
         comments: {},
         replies: {},
+        activePost: {}
 
         // tabling votes for now until vote key is added to Post model
     },
@@ -35,6 +36,9 @@ export default new vuex.Store({
             state.posts.sort(function (a, b) {
                 return b.voteCount - a.voteCount
             })
+        },
+        setActivePost(state, payload){
+            state.activePost = payload
         },
         setComments(state, payload) {
             vue.set(state.comments, payload.postId, payload.comments || [])
@@ -53,25 +57,23 @@ export default new vuex.Store({
             api
                 .get("posts/")
                 .then(res => {
-                    console.log(res);
                     commit("setPosts", res.data);
                 })
                 .catch(err => {
                     console.log(err);
                 });
         },
-        // getPost({commit, dispatch}, payload) {
-        //     api
-        //         .get("posts/" + payload._id)
-        //         .then(res => {
-        //             console.log(res);
-        //             commit("setPost", res.data);
-        //         })
-        //         .catch(err => {
-        //             console.log(err)
-        //         })
-        // },
-        // GET ALL COMMENTS ON A POST
+        getPostById({commit, dispatch}, payload) {
+            api
+                .get("posts/" + payload)
+                .then(res => {
+                    commit("setActivePost", res.data);
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        },
+        //GET ALL COMMENTS ON A POST
         getComments({ commit, dispatch }, payload) {
             api
                 .get("posts/" + payload._id + "/comments")

@@ -8,6 +8,8 @@ import Login from '@/components/Login'
 import Post from '@/components/Post'
 //@ts-ignore
 import Comment from '@/components/Comment'
+//@ts-ignore
+import Example from '@/components/Example'
 
 Vue.use(Router)
 
@@ -24,9 +26,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/api/posts/:postId/comments',
-      name: 'Comment',
-      component: Comment
+      path: '/api/posts/:postId',
+      name: 'Example',
+      component: Example
     }
   ]
 })

@@ -41,6 +41,9 @@
         computed: {
             replies() {
                 return this.$store.state.replies[this.comment._id] || []
+            },
+            comments() {
+                return this.$store.state.comments[this.comment.postId] || []
             }
         },
         methods: {
