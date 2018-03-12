@@ -12,6 +12,16 @@
                   <input type="password" v-model="user.password" placeholder="password">
                     <input type="checkbox"> Remember me</label>
                     <button type="submit" class="btn btn-default">Submit</button>
+                  </div>
+              </form>
+              <form @submit.prevent="createUser()">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" v-model="user.name" placeholder="name">  
+                  <label for="email">Email address:</label>
+                  <input type="email" v-model="user.email" placeholder="email">
+                  <label for="pwd">Password:</label>
+                  <input type="password" v-model="user.password" placeholder="password">
                     <button type="primary" class="btn btn-default">Create Account</button>
                   </div>
               </form>
